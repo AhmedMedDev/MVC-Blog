@@ -1,12 +1,25 @@
 <?php 
 
 //namespace MVC\Models;
-
+  /*
+   * Model Post Class
+   * Get All Likes
+   * Get All Likes Of Post
+   * Get Imgs Of Post
+   * Add Like
+   * Check if User Make a like or Not
+   * Delete Like 
+   */
 class Like {
+
     public $DB;
     public $con;
+
     public function __construct() {
+
+        //Instantiate Database class
         $this->DB  = new Database;
+        
         $this->con = $this->DB->ReturnConnention();
     }
     

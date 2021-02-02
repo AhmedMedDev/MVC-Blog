@@ -1,12 +1,30 @@
 <?php 
 
 //namespace MVC\Models;
-
+  /*
+   * Model Post Class
+   * get All Posts
+   * get All Imgs
+   * Get Imgs Of Post
+   * Add Post
+   * Add Post Img
+   * Edite Post 
+   * Edite Post Imgs
+   * Get Post By ID
+   * Get Post Img By ID
+   * Delete Post
+   * Delete Post Img
+   */
 class Post {
+    
     public $DB;
     public $con;
+
     public function __construct() {
+
+        //Instantiate Database class
         $this->DB  = new Database;
+
         $this->con = $this->DB->ReturnConnention();
     }
     public function getAllPosts(){

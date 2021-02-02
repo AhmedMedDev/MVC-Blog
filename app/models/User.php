@@ -1,12 +1,22 @@
 <?php
 
 //namespace MVC\Models;
-
+  /*
+   * Model User Class
+   * Register User
+   * Login User
+   * Find User By ID
+   */
 class User {
+
     public $DB;
     public $con;
+
     public function __construct() {
+
+        //Instantiate Database class
         $this->DB  = new Database;
+
         $this->con = $this->DB->ReturnConnention();
     }
 
@@ -36,7 +46,7 @@ class User {
         return ($count > 0) ? $row : false;
         
     }
-
+    
     public function getUserByID($ID){
 
         $sql  = "SELECT * FROM user WHERE id = ?";
@@ -50,19 +60,5 @@ class User {
         return $row;
     }
 
-    //Find user by email. Email is passed in by the Controller.
-    public function findUserByEmail($email) {
-        //Prepared statement
-        $this->db->query('SELECT * FROM users WHERE email = :email');
-
-        //Email param will be binded with the email variable
-        $this->db->bind(':email', $email);
-
-        //Check if email is already registered
-        if($this->db->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    
 }
