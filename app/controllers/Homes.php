@@ -5,14 +5,20 @@
 //use MVC\lib\Controller;
 
 class Homes extends Controller {
+
     public $userID;
     public $user;
+
     public function __construct() {
+
         $this->postModel = $this->model('Post');
         $this->userModel = $this->model('User');
         $this->likeModel = $this->model('Like');
+
         $this->userID    = $_SESSION['user_id'];
+
         $this->user      = $this->userModel->getUserByID($this->userID);
+        
         if(!isLoggedIn()) 
             header("Location: " . URLROOT . "/users/login");
         

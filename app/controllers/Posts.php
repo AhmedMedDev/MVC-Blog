@@ -5,13 +5,18 @@
 //use MVC\lib\Controller;
 
 class Posts extends Controller{
+
     public $userID;
     public $user;
+
     public function __construct(){
+        
         $this->postModel = $this->model('Post');
         $this->likeModel = $this->model('Like');
         $this->userModel = $this->model('User');
+
         $this->userID    = $_SESSION['user_id'];
+        
         $this->user      = $this->userModel->getUserByID($this->userID);
 
         if(!isLoggedIn()) 
