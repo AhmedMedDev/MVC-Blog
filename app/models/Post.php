@@ -15,23 +15,17 @@
    * Delete Post
    * Delete Post Img
    */
-class Post {
+class Post extends Model{
     
-    public $DB;
-    public $con;
 
-    public function __construct() {
-
-        //Instantiate Database class
-        $this->DB  = new Database;
-
-        $this->con = $this->DB->ReturnConnention();
-    }
     public function getAllPosts(){
 
-        $sql  = "SELECT post.id , title, content,`date`,userID,username,img FROM post,user WHERE user.id = userID ORDER BY post.id DESC ";
+        $sql  = " SELECT post.id , title, content,`date`,userID,username,img 
+                  FROM post,user 
+                  WHERE user.id = userID 
+                  ORDER BY post.id DESC ";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute();
 
@@ -44,7 +38,7 @@ class Post {
 
         $sql  = "SELECT * FROM post_img";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute();
 
@@ -57,7 +51,7 @@ class Post {
 
         $sql  = "SELECT * FROM post_img WHERE postID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$postID]);
 
@@ -70,11 +64,11 @@ class Post {
 
         $sql  = "INSERT INTO post (title, content,userID) VALUES (?,?,?)";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$title,$content,$userID]);
 
-        $last_id = $this->con->lastInsertId();
+        $last_id = $this->Connection->lastInsertId();
 
        return $last_id;
     }
@@ -83,7 +77,7 @@ class Post {
 
         $sql  = "INSERT INTO post_img (postID,img) VALUES (?,?)";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$postID,$img]);
 
@@ -93,7 +87,7 @@ class Post {
         
         $sql  = "UPDATE post SET title = ? , content = ? WHERE id = ? ";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$title,$content,$postID]);
     }
@@ -102,7 +96,7 @@ class Post {
 
         $sql  = "UPDATE post_img SET img = ? WHERE imgID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$img,$imgID]);
 
@@ -112,7 +106,7 @@ class Post {
 
         $sql  = "SELECT * FROM post WHERE id = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$postID]);
 
@@ -125,7 +119,7 @@ class Post {
 
         $sql  = "SELECT * FROM post_img WHERE postID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$postID]);
 
@@ -138,7 +132,7 @@ class Post {
 
         $sql  = "DELETE FROM post WHERE id = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$postID]);
     }
@@ -147,7 +141,7 @@ class Post {
 
         $sql  = "UPDATE post_img SET img = ?  WHERE imgID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute(["",$imgID]);
     }

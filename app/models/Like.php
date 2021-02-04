@@ -10,24 +10,14 @@
    * Check if User Make a like or Not
    * Delete Like 
    */
-class Like {
+class Like extends Model{
 
-    public $DB;
-    public $con;
-
-    public function __construct() {
-
-        //Instantiate Database class
-        $this->DB  = new Database;
-        
-        $this->con = $this->DB->ReturnConnention();
-    }
     
     public function getAllLikes(){
 
         $sql  = "SELECT * FROM likes";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute();
 
@@ -40,7 +30,7 @@ class Like {
 
         $sql  = "SELECT userID FROM likes WHERE  postID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$postID]);
 
@@ -53,7 +43,7 @@ class Like {
 
         $sql  = "INSERT INTO likes (userID ,postID ) VALUES (?,?)";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$userID,$postID]);
 
@@ -63,7 +53,7 @@ class Like {
 
         $sql  = "SELECT * FROM likes WHERE userID = ? AND postID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$userID,$postID]);
 
@@ -76,7 +66,7 @@ class Like {
 
         $sql  = "DELETE FROM likes WHERE userID = ? AND postID = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$userID,$postID]);
 

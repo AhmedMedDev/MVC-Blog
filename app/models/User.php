@@ -7,24 +7,14 @@
    * Login User
    * Find User By ID
    */
-class User {
+class User extends Model{
 
-    public $DB;
-    public $con;
-
-    public function __construct() {
-
-        //Instantiate Database class
-        $this->DB  = new Database;
-
-        $this->con = $this->DB->ReturnConnention();
-    }
 
     public function register($username,$email,$password,$img) {
 
         $sql  = "INSERT INTO user (username, email, password, img) VALUES (?, ?, ?, ?);";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$username,$email,$password,$img]);
     }
@@ -34,7 +24,7 @@ class User {
         
         $sql  = "SELECT * FROM user WHERE username = ? AND password = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$username,$password]);
 
@@ -51,7 +41,7 @@ class User {
 
         $sql  = "SELECT * FROM user WHERE id = ?";
 
-        $stmt = $this->con->prepare($sql);
+        $stmt = $this->Connection->prepare($sql);
 
         $stmt->execute([$ID]);
 

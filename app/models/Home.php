@@ -2,16 +2,9 @@
 
 //namespace MVC\Models;
 
-class Home {
+class Home extends Model{
 
-    public $DB;
-    public $con;
 
-    public function __construct() {
-        
-        $this->DB   = new Database;
-        $this->con  = $this->DB->ReturnConnention();
-    }
     
     
     
