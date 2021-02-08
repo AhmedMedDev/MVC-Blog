@@ -5,7 +5,6 @@
    * Model Post Class
    * Get All Likes
    * Get All Likes Of Post
-   * Get Imgs Of Post
    * Add Like
    * Check if User Make a like or Not
    * Delete Like 
