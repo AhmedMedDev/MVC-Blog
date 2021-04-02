@@ -1,9 +1,7 @@
 ## MVC-Blog
 
 
-```
-Rename folder to Blog
-```
+
 
 
 ```
